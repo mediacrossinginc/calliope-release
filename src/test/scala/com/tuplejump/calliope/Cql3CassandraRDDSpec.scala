@@ -1,7 +1,7 @@
 package com.tuplejump.calliope
 
 import org.scalatest.{BeforeAndAfterAll, FunSpec}
-import spark.{Partition, SparkContext}
+import org.apache.spark.{Partition, SparkContext}
 import org.scalatest.matchers.{MustMatchers, ShouldMatchers}
 import java.nio.ByteBuffer
 import com.tuplejump.calliope.utils.RichByteBuffer

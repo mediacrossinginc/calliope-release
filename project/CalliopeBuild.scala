@@ -6,18 +6,19 @@ object CalliopeBuild extends Build {
 
   val VERSION = "0.7.3-1"
   val SCALA_VERSION = "2.9.3"
-  val SPARK_VERSION = "0.7.2"
-  val CAS_VERSION = "1.2.6"
+  val SPARK_VERSION = "0.9.0-incubating-SNAPSHOT"
+  val CAS_VERSION = "1.2.8"
   val THRIFT_VERSION = "0.7.0"
 
   lazy val calliope = {
     val dependencies = libraryDependencies ++= Seq(
-      "org.spark-project" %% "spark-core" % SPARK_VERSION % "provided",
+      "org.apache.spark" %% "spark-core" % SPARK_VERSION % "provided",
       "org.apache.cassandra" % "cassandra-all" % CAS_VERSION intransitive(),
       "org.apache.cassandra" % "cassandra-thrift" % CAS_VERSION intransitive(),
       "org.apache.thrift" % "libthrift" % THRIFT_VERSION exclude("org.slf4j", "slf4j-api") exclude("javax.servlet", "servlet-api"),
       "org.slf4j" % "slf4j-jdk14" % "1.7.5",
-      "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+      "org.scalatest" %% "scalatest" % "1.9.1" % "test",
+      "org.apache.hadoop" % "hadoop-client" % "2.0.0-mr1-cdh4.2.1" % "provided"
     )
 
 

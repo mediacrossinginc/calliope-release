@@ -1,0 +1,3 @@
+package org.apache.hadoop.mapreduce
+
+trait SparkHadoopMapReduceUtilAdapter extends SparkHadoopMapReduceUtil

@@ -19,15 +19,15 @@
 
 package com.tuplejump.calliope.thrift
 
-import spark._
-import org.apache.hadoop.mapreduce.{TaskAttemptID, JobID, HadoopMapReduceUtil, InputSplit}
-import org.apache.hadoop.io.Writable
+import org.apache.spark._
+import org.apache.spark.rdd.RDD
+import org.apache.hadoop.mapreduce.{SparkHadoopMapReduceUtilAdapter, TaskAttemptID, JobID, InputSplit}
 import org.apache.cassandra.hadoop.ColumnFamilyInputFormat
 import java.nio.ByteBuffer
 import scala.collection.JavaConversions._
 import java.text.SimpleDateFormat
 import java.util.Date
-import com.tuplejump.calliope.{ThriftCasBuilder}
+import com.tuplejump.calliope.ThriftCasBuilder
 import com.tuplejump.calliope.utils.CassandraPartition
 
 
@@ -35,7 +35,7 @@ class ThriftCassandraRDD[T: Manifest](sc: SparkContext,
                                                         @transient cas: ThriftCasBuilder,
                                                         unmarshaller: (ByteBuffer, Map[ByteBuffer, ByteBuffer]) => T)
   extends RDD[T](sc, Nil)
-  with HadoopMapReduceUtil
+  with SparkHadoopMapReduceUtilAdapter
   with Logging {
 
   // A Hadoop Configuration can be about 10 KB, which is pretty big, so broadcast it
@@ -49,7 +49,7 @@ class ThriftCassandraRDD[T: Manifest](sc: SparkContext,
     formatter.format(new Date())
   }
 
-  def compute(theSplit: Partition, context: TaskContext): Iterator[T] = new Iterator[T] {
+  override def compute(theSplit: Partition, context: TaskContext): Iterator[T] = new Iterator[T] {
     val conf = confBroadcast.value.value
     val format = new ColumnFamilyInputFormat
     val split = theSplit.asInstanceOf[CassandraPartition]
@@ -97,7 +97,7 @@ class ThriftCassandraRDD[T: Manifest](sc: SparkContext,
     }
   }
 
-  def getPartitions: Array[Partition] = {
+  override def getPartitions: Array[Partition] = {
 
     val jc = newJobContext(conf, jobId)
     val inputFormat = new ColumnFamilyInputFormat()

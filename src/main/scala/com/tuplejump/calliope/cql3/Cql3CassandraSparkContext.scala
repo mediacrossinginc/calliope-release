@@ -19,7 +19,8 @@
 
 package com.tuplejump.calliope.cql3
 
-import spark.{RDD, SparkContext}
+import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
 import java.nio.ByteBuffer
 import com.tuplejump.calliope.{Cql3CasBuilder, CasBuilder}
 
