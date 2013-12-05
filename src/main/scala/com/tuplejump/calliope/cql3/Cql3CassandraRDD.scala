@@ -26,7 +26,7 @@ import java.nio.ByteBuffer
 import scala.collection.JavaConversions._
 import java.text.SimpleDateFormat
 import java.util.Date
-import org.apache.cassandra.hadoop.cql3.CqlPagingInputFormat
+import org.apache.cassandra.hadoop2.cql3.CqlPagingInputFormat
 import com.tuplejump.calliope.CasBuilder
 import com.tuplejump.calliope.utils.CassandraPartition
 

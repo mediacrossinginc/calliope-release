@@ -24,11 +24,11 @@ import org.apache.spark.rdd.{PairRDDFunctions, RDD}
 
 import java.nio.ByteBuffer
 import org.apache.cassandra.thrift.{Column, Mutation, ColumnOrSuperColumn}
-import org.apache.cassandra.hadoop.ColumnFamilyOutputFormat
+import org.apache.cassandra.hadoop2.ColumnFamilyOutputFormat
 import scala.collection.JavaConversions._
 
 import org.apache.spark.SparkContext._
-import org.apache.cassandra.hadoop.cql3.CqlOutputFormat
+import org.apache.cassandra.hadoop2.cql3.CqlOutputFormat
 
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._

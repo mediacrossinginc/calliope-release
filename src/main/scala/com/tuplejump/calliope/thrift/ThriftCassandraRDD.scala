@@ -22,7 +22,7 @@ package com.tuplejump.calliope.thrift
 import org.apache.spark._
 import org.apache.spark.rdd.RDD
 import org.apache.hadoop.mapreduce.{SparkHadoopMapReduceUtilAdapter, TaskAttemptID, JobID, InputSplit}
-import org.apache.cassandra.hadoop.ColumnFamilyInputFormat
+import org.apache.cassandra.hadoop2.ColumnFamilyInputFormat
 import java.nio.ByteBuffer
 import scala.collection.JavaConversions._
 import java.text.SimpleDateFormat
